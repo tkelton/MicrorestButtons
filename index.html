@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Buttons</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrollbars */
+            font-family: 'Arial', sans-serif; 
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr); /* 15 columns */
+            grid-template-rows: repeat(10, 3fr); /* 10 rows with 2 times the height of columns */
+            gap: 0; /* Add gaps if needed */ 
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white; 
+            border: 1px solid black;
+            color: black; 
+            font-size: 1em; 
+            box-sizing: border-box;
+            width: 100%; /* Fill the column width */
+            height: 100%; /* Fill the row height */
+            text-align: center; 
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .button:hover {
+            background-color: lightgray; /* Default hover color */
+        }
+
+        .button.about:hover {
+            background-color: darkgray; /* Dark grey hover color for "about" buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- JavaScript will dynamically add buttons here -->
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const totalButtons = 15 * 10; // 15 columns * 10 rows
+
+        for (let i = 0; i < totalButtons; i++) {
+            const button = document.createElement('div');
+            button.classList.add('button');
+
+            // Calculate the column index (0-based)
+            const columnIndex = i % 15;
+
+            // Set text content based on column index
+            if (columnIndex < 5) { // Change to 5 columns
+                button.textContent = 'About';
+                button.classList.add('about'); // Add 'about' class for special hover effect
+            } else {
+                button.textContent = ''; // Blank for other columns
+            }
+            container.appendChild(button);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
